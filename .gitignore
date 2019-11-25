@@ -1,0 +1,12 @@
+# Not specific
+*.swp
+*.un~
+*.bk
+*.log
+*.netrwhist
+.cache
+*.out
+.DS_Store
+
+# secrets home
+secrets

@@ -1,0 +1,42 @@
+# Mapper,Name,State,Description
+
+################
+#              #
+# Requirements #
+#              #
+################
+f,brew,off,
+f,brewfonts,off,
+
+############
+#          #
+# GUI Apps #
+#          #
+############
+a,spotify,off,
+a,google-chrome,off,
+a,iterm2,off,
+a,postman,off,
+
+########
+#      #
+# Apps #
+#      #
+########
+,editorconfig,on,
+a,font-firacode-nerd-font-mono,off,
+
+###########
+#         #
+# Haskell #
+#         #
+###########
+,ghc,off,Haskell Compiler
+,cabal-install,off,
+
+##########
+#        #
+# Docker #
+#        #
+##########
+a,docker,off,

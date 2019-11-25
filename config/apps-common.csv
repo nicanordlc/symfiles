@@ -1,0 +1,77 @@
+# Mapper,Name,State,Description
+
+########
+#      #
+# Apps #
+#      #
+########
+,curl,on,
+,jq,off,
+,tree,off,
+,bc,off,
+,ctags,off,
+,ncdu,off,
+,bash-completion,off,
+,shellcheck,off,
+,fd,off,
+,ripgrep,off,
+,ranger,off,
+,asciinema,off,Terminal recorder
+,figlet,off,ASCII art text
+,unzip,off,
+
+##########
+#        #
+# NodeJS #
+#        #
+##########
+,yarn,off,
+f,nvm,off,
+node,vtop,off,
+node,diff-so-fancy,off,
+node,live-server,off,
+node,alex,off,
+
+########
+#      #
+# Ruby #
+#      #
+########
+f,rvm,off,
+gem,lolcat,off,
+gem,mdl,off,
+
+##########
+#        #
+# Python #
+#        #
+##########
+,python3,off,
+,python-pip,off,
+pip,doge,off,
+pip,speedtest-cli,off,
+pip,termtosvg,off,
+pip,pip,off,
+
+#######
+#     #
+# ZSH #
+#     #
+#######
+,zsh,off,
+f,ohmyzsh,off,
+
+#############
+#           #
+# Functions #
+#           #
+#############
+f,gotop,off,
+
+#################
+#               #
+# Run this last #
+#               #
+#################
+f,tpm,off,TMUX Plugin Manager
+f,setzsh,off,
