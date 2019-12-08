@@ -2,6 +2,23 @@
 
 ########
 #      #
+# Ruby #
+#      #
+########
+f,rvm,on,
+gem,lolcat,off,
+gem,mdl,off,
+
+###############################################################################
+#                                                                             #
+# Mac requirements ( This needed to be here and depends on ruby ¯\_(ツ)_/¯  ) #
+#                                                                             #
+###############################################################################
+f,brew,on,
+f,brewfonts,on,
+
+########
+#      #
 # Apps #
 #      #
 ########
@@ -31,15 +48,6 @@ node,vtop,off,
 node,diff-so-fancy,off,
 node,live-server,off,
 node,alex,off,
-
-########
-#      #
-# Ruby #
-#      #
-########
-f,rvm,off,
-gem,lolcat,off,
-gem,mdl,off,
 
 ##########
 #        #
