@@ -9,14 +9,18 @@ a,spotify,off,
 a,google-chrome,off,
 a,iterm2,off,
 a,postman,off,
+a,slack,off,
+a,virtualbox,off,
 
 ########
 #      #
 # Apps #
 #      #
 ########
-,editorconfig,on,
+,editorconfig,off,
 a,font-firacode-nerd-font-mono,off,
+,htop,off,
+a,vagrant,off,
 
 ###########
 #         #

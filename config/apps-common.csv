@@ -1,19 +1,10 @@
 # Mapper,Name,State,Description
 
-########
-#      #
-# Ruby #
-#      #
-########
-f,rvm,on,
-gem,lolcat,off,
-gem,mdl,off,
-
-###############################################################################
-#                                                                             #
-# Mac requirements ( This needed to be here and depends on ruby ¯\_(ツ)_/¯  ) #
-#                                                                             #
-###############################################################################
+##############################################################
+#                                                            #
+# This need to be here so the base mac deps can be installed #
+#                                                            #
+##############################################################
 f,brew,on,
 f,brewfonts,on,
 
@@ -28,26 +19,48 @@ f,brewfonts,on,
 ,bc,off,
 ,ctags,off,
 ,ncdu,off,
+,neovim,off,
+,tmux,off,
 ,bash-completion,off,
 ,shellcheck,off,
 ,fd,off,
 ,ripgrep,off,
-,ranger,off,
+,curlftpfs,off,
 ,asciinema,off,Terminal recorder
 ,figlet,off,ASCII art text
 ,unzip,off,
+,vifm,off,
+,gnupg,off,
+f,rust,off,
+
+######
+#    #
+# Go #
+#    #
+######
+f,go,off,
+g,github.com/Dentrax/GMDB,off,Movie Library in GO *arrg*
 
 ##########
 #        #
 # NodeJS #
 #        #
 ##########
-,yarn,off,
 f,nvm,off,
+,yarn,off,
 node,vtop,off,
 node,diff-so-fancy,off,
 node,live-server,off,
 node,alex,off,
+
+########
+#      #
+# Ruby #
+#      #
+########
+f,rvm,off,
+gem,lolcat,off,
+gem,mdl,off,
 
 ##########
 #        #
@@ -75,11 +88,3 @@ f,ohmyzsh,off,
 #           #
 #############
 f,gotop,off,
-
-#################
-#               #
-# Run this last #
-#               #
-#################
-f,tpm,off,TMUX Plugin Manager
-f,setzsh,off,
