@@ -14,7 +14,7 @@ PASSWORD	?=
 #           #
 #############
 
-SYM_OUT		:= "${HOME}/.dots/symlink-dst-paths.out"
+SYM_OUT		:= "${HOME}/.syms/symlink-dst-paths.out"
 
 # `Main Paths`
 # ============
@@ -81,7 +81,7 @@ install: make-dots symlink
 
 .PHONY: make-dots
 make-dots:
-	@mkdir -p ${HOME}/.dots
+	@mkdir -p ${HOME}/.syms
 
 .PHONY: symlink-secrets
 symlink-secrets: make-dots $(SECRETS_OUT)
@@ -120,8 +120,8 @@ test-fix:
 
 .PHONY: log
 log:
-	@less ~/.dots/install-status.log
+	@less ~/.syms/install-status.log
 
 .PHONY: log-raw
 log-raw:
-	@less ~/.dots/install.log
+	@less ~/.syms/install.log

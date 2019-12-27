@@ -6,7 +6,7 @@
 # Prepare log files #
 #                   #
 #####################
-BASE_PATH=~/.dots
+BASE_PATH=~/.syms
 LOG_DST="${BASE_PATH}/install.log"
 LOG_DST_STATUS="${BASE_PATH}/install-status.log"
 mkdir -p $BASE_PATH
