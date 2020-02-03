@@ -14,7 +14,7 @@ PASSWORD	?=
 #           #
 #############
 
-SYM_OUT		:= "${HOME}/.syms/symlink-dst-paths.out"
+SYM_OUT		:= "${HOME}/.syms/link-dst-paths.out"
 
 # `Main Paths`
 # ============
@@ -72,29 +72,29 @@ endef
 #       #
 #########
 
-.PHONY: symlink
-symlink: symlink-dots symlink-secrets
+.PHONY: link
+link: link-dots link-secrets
 
 .PHONY: install
-install: make-dots symlink
+install: make-dots link
 	@PASSWORD=$(PASSWORD) ./install.sh $(CSV)
 
 .PHONY: make-dots
 make-dots:
 	@mkdir -p ${HOME}/.syms
 
-.PHONY: symlink-secrets
-symlink-secrets: make-dots $(SECRETS_OUT)
+.PHONY: link-secrets
+link-secrets: make-dots $(SECRETS_OUT)
 $(HOME_DIST)/%: $(SECRETS_PATH)/%
 	$(call do_symlink,$@,$<)
 
-.PHONY: symlink-dots
-symlink-dots: make-dots $(DOTS_OUT)
+.PHONY: link-dots
+link-dots: make-dots $(DOTS_OUT)
 $(HOME_DIST)/%: $(DOTS_PATH)/%
 	$(call do_symlink,$@,$<)
 
-.PHONY: symlink-update
-symlink-update: clean symlink
+.PHONY: link-update
+link-update: clean link
 
 .PHONY: clean
 clean: $(CLEAN_SRC) post-clean
