@@ -5,15 +5,15 @@
 # This need to be here so the base mac deps can be installed #
 #                                                            #
 ##############################################################
-f,brew,on,
-f,brewfonts,on,
+f,brew,on,This installs homebrew if you're on a macOS machine
+f,brewfonts,on,This is a macOS related package
 
 ########
 #      #
 # Apps #
 #      #
 ########
-,curl,on,
+,curl,on,Curl is listed here just in case ¯\_(ツ)_/¯
 ,jq,off,
 ,tree,off,
 ,bc,off,
@@ -22,7 +22,7 @@ f,brewfonts,on,
 ,neovim,off,
 ,tmux,off,
 ,bash-completion,off,
-,shellcheck,on,
+,shellcheck,on,Shellcheck is needed for the `make test` command
 ,fd,off,
 ,ripgrep,off,
 ,curlftpfs,off,

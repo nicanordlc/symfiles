@@ -7,6 +7,7 @@
 ###########
 CSV		?=
 PASSWORD	?=
+DEFAULT_EDITOR	?= ${EDITOR}
 
 #############
 #           #
@@ -75,27 +76,6 @@ endef
 .PHONY: link
 link: link-dots link-secrets
 
-.PHONY: install
-install: make-dots link
-	@PASSWORD=$(PASSWORD) ./install.sh $(CSV)
-
-.PHONY: make-dots
-make-dots:
-	@mkdir -p ${HOME}/.syms
-
-.PHONY: link-secrets
-link-secrets: make-dots $(SECRETS_OUT)
-$(HOME_DIST)/%: $(SECRETS_PATH)/%
-	$(call do_symlink,$@,$<)
-
-.PHONY: link-dots
-link-dots: make-dots $(DOTS_OUT)
-$(HOME_DIST)/%: $(DOTS_PATH)/%
-	$(call do_symlink,$@,$<)
-
-.PHONY: link-update
-link-update: clean link
-
 .PHONY: clean
 clean: $(CLEAN_SRC) post-clean
 $(HOME_DIST)/%.clean:
@@ -103,9 +83,20 @@ $(HOME_DIST)/%.clean:
 	@sed 's/.clean//' <<<"$@" \
 		| xargs rm -rfv
 
-.PHONY: post-clean
-post-clean:
-	@rm -f $(SYM_OUT)
+.PHONY: update
+update: clean link
+
+.PHONY: install
+install: make-dots link
+	@PASSWORD=$(PASSWORD) ./install.sh $(CSV)
+
+.PHONY: log
+log:
+	@less ~/.syms/install-status.log
+
+.PHONY: log-raw
+log-raw:
+	@less ~/.syms/install.log
 
 .PHONY: test
 test:
@@ -118,10 +109,22 @@ test-fix:
 		| cut -d' ' -f2 \
 		| xargs nvim
 
-.PHONY: log
-log:
-	@less ~/.syms/install-status.log
+# helper rules
 
-.PHONY: log-raw
-log-raw:
-	@less ~/.syms/install.log
+.PHONY: make-dots
+make-dots:
+	@mkdir -p ${HOME}/.syms
+
+.PHONY: link-dots
+link-dots: make-dots $(DOTS_OUT)
+$(HOME_DIST)/%: $(DOTS_PATH)/%
+	$(call do_symlink,$@,$<)
+
+.PHONY: link-secrets
+link-secrets: make-dots $(SECRETS_OUT)
+$(HOME_DIST)/%: $(SECRETS_PATH)/%
+	$(call do_symlink,$@,$<)
+
+.PHONY: post-clean
+post-clean:
+	@rm -f $(SYM_OUT)
