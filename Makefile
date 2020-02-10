@@ -80,7 +80,7 @@ link: link-dots link-secrets
 clean: $(CLEAN_SRC) post-clean
 $(HOME_DIST)/%.clean:
 	@printf "x "
-	@sed 's/.clean//' <<<"$@" \
+	@echo "$@" | sed 's/.clean//' \
 		| xargs rm -rfv
 
 .PHONY: update
