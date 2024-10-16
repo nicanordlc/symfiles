@@ -24,7 +24,7 @@ SYM_OUT				:= "$(SYM_CONFIG_PATH)/links-clean.out"
 # ============
 HOME_DIST	:= ${HOME}
 DOTS_PATH	:= ${PWD}/dots
-SECRETS_PATH	:= ${PWD}/src/secrets/
+SECRETS_PATH	:= $(HOME_DIST)/projects/secrets/dots
 
 # `secrets`
 # =========
