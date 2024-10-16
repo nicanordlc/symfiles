@@ -2,13 +2,21 @@
 # shellcheck disable=1090,1117,2048
 # vim: ts=4:sw=4
 
+# Source script to source other scripts (;
+# ===================================
+. ./src/utils/source-if-exists.sh
+
+# Source BEGINS
+# ======================
+sourceIfExists ./src/{functions,managers,utils}/*.sh
+
 #####################
 #                   #
 # Prepare log files #
 #                   #
 #####################
-BASE_PATH=$(envsubst < ENV_HOME_SYM_CONFIG)
-LOG_CONFIG_PATH=$(envsubst < ENV_SYM_INSTALL_LOG)
+BASE_PATH=$(__envsubst < ENV_HOME_SYM_CONFIG)
+LOG_CONFIG_PATH=$(__envsubst < ENV_SYM_INSTALL_LOG)
 LOG_CONFIG_PATH_STATUS=$(envsubst < ENV_SYM_INSTALL_LOG_STATUS)
 mkdir -p "$BASE_PATH"
 touch "$LOG_CONFIG_PATH"
@@ -45,14 +53,6 @@ __delete_password_temp(){
         rm -rf "$TEMP_SUDO_PASSWORD"
     ) &
 }
-
-# Source script to source other scripts (;
-# ===================================
-. ./src/utils/source-if-exists.sh
-
-# Source BEGINS
-# ======================
-sourceIfExists ./src/{functions,managers,utils}/*.sh
 
 #############
 #           #
