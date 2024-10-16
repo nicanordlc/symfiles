@@ -15,8 +15,10 @@ DEFAULT_EDITOR	?= ${EDITOR}
 #           #
 #############
 
-SYM_CONFIG_PATH	:= "$(shell cat ENV_HOME_SYM_CONFIG)"
-SYM_OUT		:= "$(SYM_CONFIG_PATH)/links-clean.out"
+SYM_CONFIG_PATH			:= "$(shell cat ENV_HOME_SYM_CONFIG)"
+SYM_CONFIG_INSTALL_LOG		:= "$(shell cat ENV_SYM_INSTALL_LOG)"
+SYM_CONFIG_INSTALL_LOG_STATUS	:= "$(shell cat ENV_SYM_INSTALL_LOG_STATUS)"
+SYM_OUT				:= "$(SYM_CONFIG_PATH)/links-clean.out"
 
 # `Main Paths`
 # ============
@@ -29,6 +31,10 @@ SECRETS_PATH	:= ${PWD}/src/secrets/
 SECRETS_IGNORE	:= ! -wholename "*.git/*" ! -name "Session.vim"
 SECRETS_SRC	:= $(shell find $(SECRETS_PATH) -type f $(SECRETS_IGNORE) 2> /dev/null)
 SECRETS_OUT	:= $(patsubst $(SECRETS_PATH)/%,$(HOME_DIST)/%,$(SECRETS_SRC))
+
+# `SHs`
+# =====
+SH_FILES	:= $(shell ${PWD}/src/utils/find-sh-files.sh)
 
 # `dots`
 # ======
@@ -80,16 +86,42 @@ $(HOME_DIST)/%.clean:
 .PHONY: update
 update: clean link
 
+# INSTALL
+#########
+
+.PHONY: install
+install: make-dots-config-dir link
+	@PASSWORD=$(PASSWORD) ./src/install.sh $(CSV)
+
+.PHONY: install-clean
+install-clean:
+	@rm -rf $(SYM_CONFIG_INSTALL_LOG)
+	@rm -rf $(SYM_CONFIG_INSTALL_LOG_STATUS)
+
 # LOG
 #####
 
 .PHONY: log
 log:
-	@less $(SYM_CONFIG_PATH)/install.log
+	@less $(SYM_CONFIG_INSTALL_LOG)
 
 .PHONY: log-raw
-log-raw:
-	@less $(SYM_CONFIG_PATH)/install-raw.log
+log-status:
+	@less $(SYM_CONFIG_INSTALL_LOG_STATUS)
+
+# TEST
+######
+
+.PHONY: test
+test:
+	@shellcheck $(SH_FILES)
+
+.PHONY: test-fix
+test-fix:
+	@shellcheck $(SH_FILES) \
+		| grep "^In" \
+		| cut -d' ' -f2 \
+		| xargs nvim
 
 ################
 # Helper RuleZ #

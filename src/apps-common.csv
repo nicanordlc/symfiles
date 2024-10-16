@@ -1,0 +1,79 @@
+# Installer,Name,State,Description
+
+# Installers
+
+# a     (aur/comunity)
+# f     (custom function)
+# g     (golang)
+# gem   (ruby gem)
+# m     (clone and make)
+# node  (nodejs)
+# pip   (python)
+
+##############################
+#                            #
+# These only installs on mac #
+#                            #
+##############################
+f,brew,off,
+f,brewfonts,off,
+
+########
+#      #
+# Apps #
+#      #
+########
+,curl,off,
+,jq,on,
+,tree,off,
+f,rust,off,
+
+######
+#    #
+# Go #
+#    #
+######
+f,go,off,
+g,github.com/Dentrax/GMDB,off,Movie Library in GO *arrg*
+
+##########
+#        #
+# NodeJS #
+#        #
+##########
+f,nvm,off,
+,yarn,off,
+node,diff-so-fancy,off,
+
+########
+#      #
+# Ruby #
+#      #
+########
+f,rvm,off,
+gem,lolcat,off,
+
+##########
+#        #
+# Python #
+#        #
+##########
+,python3,off,
+,python-pip,off,
+pip,doge,off,
+pip,pip,off,
+
+#######
+#     #
+# ZSH #
+#     #
+#######
+,zsh,off,
+f,ohmyzsh,off,
+
+#############
+#           #
+# Functions #
+#           #
+#############
+f,gotop,off,

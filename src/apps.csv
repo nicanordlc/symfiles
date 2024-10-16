@@ -1,0 +1,19 @@
+# Installer,Name,State,Description
+
+# Installers
+
+# a     (aur/comunity)
+# f     (custom function)
+# g     (golang)
+# gem   (ruby gem)
+# m     (clone and make)
+# node  (nodejs)
+# pip   (python)
+
+##########
+#        #
+# Docker #
+#        #
+##########
+a,docker,off,
+
