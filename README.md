@@ -1,5 +1,7 @@
 # symfiles
 
+[Main Fork](https://github.com/nicanordlc/symfiles) 👈
+
 `.dotfiles` management system.
 
 Keep track of all your configuration files on your system 🗂️.
