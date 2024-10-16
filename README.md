@@ -2,7 +2,7 @@
 
 `.dotfiles` management system.
 
-Keep track of all your configuration files on your system 🗂️
+Keep track of all your configuration files on your system 🗂️.
 
 ![Symfiles Logo](./src/imgs/sym-logo.png)
 
@@ -21,6 +21,16 @@ To use this repo fork it and modify it as you see fit.
 > │  │  ├─ config     -> │  │  ├─ config
 > ├─ .zshrc           -> ├─ .zshrc
 > ```
+
+## Bootstrap
+
+Once bootstrap is done you can run commands on `~/projects/dotfiles`. Since this repo name can change by forking provide the new repo name for `$GIT_REPO`, do the same for `$GIT_USERNAME`.
+
+```bash
+$GIT_USERNAME="" \
+$GIT_REPO="" \
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/nicanordlc/symfiles/refs/heads/main/src/install-remote.sh)"
+```
 
 ## Usage
 
