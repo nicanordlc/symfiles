@@ -127,6 +127,9 @@ test-fix:
 # Helper RuleZ #
 ################
 
+.PHONY: clean-all
+clean-all: clean install-clean
+
 .PHONY: make-dots-config-dir
 make-dots-config-dir:
 	@mkdir -p $(SYM_CONFIG_PATH)
