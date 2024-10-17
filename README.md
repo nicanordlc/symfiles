@@ -26,7 +26,9 @@ To use this repo fork it and modify it as you see fit.
 
 ## Bootstrap
 
-Once bootstrap is done you can run commands on `~/projects/dotfiles`. Since this repo name can change by forking provide the new repo name for `$GIT_REPO`, do the same for `$GIT_USERNAME`.
+This will initialize `symfiles` on `~/projects/dotfiles`
+
+Provide your `GIT_USERNAME` and `GIT_REPO` after forked.
 
 ```bash
 GIT_USERNAME="" \
