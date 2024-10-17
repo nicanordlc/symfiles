@@ -28,8 +28,6 @@ touch "$LOG_CONFIG_PATH_STATUS"
 #          #
 ############
 TEMP_APP_CSV=$(mktemp)
-TEMP_SUDO_PASSWORD="$BASE_PATH/sudo-password"
-TEMP_SUDO_PASSWORD_TIMER="$((60 * 30))"
 INSTALL_MANAGER_TYPES=(
     a
     f
@@ -46,13 +44,6 @@ INSTALL_MANAGER_TYPES=(
 #               #
 #################
 trap '{ rm -rf $TEMP_APP_CSV ; }' SIGINT SIGTERM EXIT
-trap '{ __delete_password_temp ; }' SIGINT SIGTERM EXIT
-__delete_password_temp(){
-    (
-        sleep "$TEMP_SUDO_PASSWORD_TIMER"
-        rm -rf "$TEMP_SUDO_PASSWORD"
-    ) &
-}
 
 #############
 #           #
@@ -115,45 +106,6 @@ __install() {
     done <"$TEMP_APP_CSV"
 }
 
-__set_zsh() {
-    local IS_ZSH PASS
-
-    IS_ZSH=$(
-        if [ "$(basename "$SHELL")" == "zsh" ]; then
-            echo "true"
-        fi
-    )
-
-    # terminate this function if you already have zsh or it is not installed
-    if [ -n "$IS_ZSH" ] || ! command -v zsh &>/dev/null; then
-        return 0
-    fi
-
-    # set zsh as default shell
-    if ! [ -f "$TEMP_SUDO_PASSWORD" ]; then
-        TEMP_SUDO_PASSWORD=$(mktemp)
-        read -rsp "Sudo password: " PASS
-        echo "$PASS" > "$TEMP_SUDO_PASSWORD"
-    fi
-
-    chsh -s "$(grep "/zsh$" /etc/shells | tail -1)" <"$TEMP_SUDO_PASSWORD"
-}
-
-__prompt_password() {
-    local PROMPT_PASSWORD
-
-    if [ "${PASSWORD:-}" ]; then
-        echo "$PASSWORD" >"$TEMP_SUDO_PASSWORD"
-    elif [ -f "$TEMP_SUDO_PASSWORD" ] && [ -n "$(cat "$TEMP_SUDO_PASSWORD")" ]; then
-        return 0
-    else
-        read -rsp "Type sudo password for later use 🔒: " PROMPT_PASSWORD
-        echo
-        echo
-        echo "$PROMPT_PASSWORD" >"$TEMP_SUDO_PASSWORD"
-    fi
-}
-
 #########
 #       #
 # Begin #
@@ -162,9 +114,6 @@ __prompt_password() {
 
 main() {
     local OS CSV_SUFFIX DEFAULT_APPS_FILES APPS_FILES APPS_FILE
-
-    # This is to catch the password for later use if needed ;)
-    __prompt_password
 
     echo "[Installing]..."
     echo
@@ -196,9 +145,6 @@ main() {
         echo -e "\n$APPS_FILE -- Finished...\n\t(ﾉ^_^)ﾉ"
         echo
     done
-
-    # this is needs to be here if you're using zsh
-    __set_zsh
 }
 
 main "$@"
