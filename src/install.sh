@@ -17,7 +17,7 @@ sourceIfExists ./src/{functions,managers,utils}/*.sh
 #####################
 BASE_PATH=$(__envsubst < ENV_HOME_SYM_CONFIG)
 LOG_CONFIG_PATH=$(__envsubst < ENV_SYM_INSTALL_LOG)
-LOG_CONFIG_PATH_STATUS=$(envsubst < ENV_SYM_INSTALL_LOG_STATUS)
+LOG_CONFIG_PATH_STATUS=$(__envsubst < ENV_SYM_INSTALL_LOG_STATUS)
 mkdir -p "$BASE_PATH"
 touch "$LOG_CONFIG_PATH"
 touch "$LOG_CONFIG_PATH_STATUS"
