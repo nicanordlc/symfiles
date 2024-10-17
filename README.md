@@ -6,6 +6,10 @@
 
 Keep track of all your configuration files on your system 🗂️.
 
+> [!TIP]
+> Use this repo in combination with [symsecrets](https://github.com/nicanordlc/symsecrets)
+> to setup the secrets on the system.
+
 ![Symfiles Logo](./src/imgs/sym-logo.png)
 
 To use this repo fork it and modify it as you see fit.
