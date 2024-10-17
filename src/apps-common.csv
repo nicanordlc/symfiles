@@ -15,8 +15,8 @@
 # These only installs on mac #
 #                            #
 ##############################
-f,brew,off,
-f,brewfonts,off,
+f,brew,on,
+f,brewfonts,on,
 
 ########
 #      #
