@@ -34,6 +34,9 @@ This will initialize `symfiles` on `~/projects/dotfiles`
 
 Provide your `GIT_USERNAME` and `GIT_REPO` after forked.
 
+> [!CAUTION]
+> For `MacOS`: Make sure [brew](https://brew.sh/) is installed.
+
 ```bash
 GIT_USERNAME="" \
 GIT_REPO="" \

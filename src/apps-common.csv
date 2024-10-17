@@ -10,14 +10,6 @@
 # node  (nodejs)
 # pip   (python)
 
-##############################
-#                            #
-# These only installs on mac #
-#                            #
-##############################
-f,brew,on,
-f,brewfonts,on,
-
 ########
 #      #
 # Apps #
