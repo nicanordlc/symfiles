@@ -6,7 +6,6 @@
 #         #
 ###########
 CSV		?=
-PASSWORD	?=
 DEFAULT_EDITOR	?= ${EDITOR}
 
 #############
@@ -91,7 +90,7 @@ update: clean link
 
 .PHONY: install
 install: make-dots-config-dir link
-	@PASSWORD=$(PASSWORD) ./src/install.sh $(CSV)
+	@bash ./src/install.sh $(CSV)
 
 .PHONY: install-clean
 install-clean:
