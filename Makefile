@@ -89,8 +89,8 @@ update: clean link
 #########
 
 .PHONY: install
-install: make-dots-config-dir link
-	@bash ./src/install.sh $(CSV)
+install: make-dots-config-dir
+	@./src/install.sh $(CSV)
 
 .PHONY: install-clean
 install-clean:

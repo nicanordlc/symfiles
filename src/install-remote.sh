@@ -14,7 +14,7 @@ main() {
   cd dotfiles
 
   # spread dotfiles configurations on the system
-  make install
+  make link
 }
 
 main "$@"
