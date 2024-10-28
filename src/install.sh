@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -Eeuo pipefail
 # shellcheck disable=1090,1117,2048
 # vim: ts=4:sw=4
 

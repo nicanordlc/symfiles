@@ -1,28 +1,34 @@
 #!/bin/bash
 
 __is_installed(){
-  local LOG_FILE=${1:?"No file provided"}
-  local APP=${2:?"No app name provided"}
-  local TYPE=$3
+    local LOG_FILE=${1:?"No file provided"}
+    local app=${2:?"No app name provided"}
+    local type=$3
 
-  local PATTERN_TRUE="^$TYPE :: $APP :: 0$"
-  local PATTERN_FALSE="^$TYPE :: $APP :: 1$"
+    type_escaped="$(printf '%s' "$type" | sed 's;\([+-]\);\\\1;g')"
 
-  if grep -E "$PATTERN_TRUE" &> /dev/null < "$LOG_FILE"; then
-      echo "✔ $APP ($TYPE)"
-      return 0
-  elif grep -E "$PATTERN_FALSE" &> /dev/null < "$LOG_FILE"; then
-      echo "✗ $APP ($TYPE) <----"
-      return 0
-  fi
+    app_formatted="$type_escaped :: $app ::"
 
-  return 1
+    # tail to get last status in case multiple times introduced
+    found_app="$(grep ^$app_formatted < $LOG_FILE | tail -n 1)"
+
+    if [ -z "$found_app" ]; then
+        return 1
+    fi
+
+    status="$(cut -d: -f5 <<<$found_app)"
+
+    if [[ "$status" -eq 0 ]];then
+        echo "✔ $app ($type)"
+    else
+        echo "✗ $app ($type) <----"
+    fi
 }
 
 # If this file is running in terminal call the function `__is_installed`
 # Otherwise just source it
-if [ "$(basename "${0}")" = "isinstalled.sh" ]
+if [ "$(basename "${0}")" = "is-installed.sh" ]
 then
-  __is_installed "${@}"
+    __is_installed "${@}"
 fi
 

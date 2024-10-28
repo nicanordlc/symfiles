@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ohmyzshInstall(){
-  local USER="https://raw.githubusercontent.com/cabaalexander"
+  local USER="https://raw.githubusercontent.com/nicanordlc"
   local URL="${USER}/oh-my-zsh/master/tools/install.sh"
 
   sh -c "$(curl -fsSL $URL)"

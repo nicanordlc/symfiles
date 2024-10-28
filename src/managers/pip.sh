@@ -2,10 +2,7 @@
 
 __pip(){
   case "$OS" in
-      mac) pip3 install "$@" \
-          --trusted-host pypi.python.org \
-          --trusted-host pypi.org \
-          --trusted-host files.pythonhosted.org ;;
+      mac) pipx install "$@" ;;
       *) pip3 install --user "$@" ;;
   esac
 }

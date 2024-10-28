@@ -52,6 +52,7 @@ gem,lolcat,off,
 ##########
 ,python3,off,
 ,python-pip,off,
+,pipx,on,
 pip,doge,off,
 pip,pip,off,
 
