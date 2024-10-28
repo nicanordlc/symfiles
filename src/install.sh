@@ -128,8 +128,8 @@ main() {
     esac
 
     DEFAULT_APPS_FILES=(
-        "./src/apps-common.csv"
-        "./src/apps${CSV_SUFFIX}.csv"
+        "./apps-common.csv"
+        "./apps${CSV_SUFFIX}.csv"
     )
 
     APPS_FILES=("${@:-${DEFAULT_APPS_FILES[*]}}")
