@@ -18,18 +18,29 @@ SYM_CONFIG_PATH			:= "$(shell cat ENV_HOME_SYM_CONFIG)"
 SYM_CONFIG_INSTALL_LOG		:= "$(shell cat ENV_SYM_INSTALL_LOG)"
 SYM_CONFIG_INSTALL_LOG_STATUS	:= "$(shell cat ENV_SYM_INSTALL_LOG_STATUS)"
 SYM_OUT				:= "$(SYM_CONFIG_PATH)/links-clean.out"
+SYM_IGNORE			:= \
+	! -path "*.git*" \
+	! -name "Session.vim" \
+	! -name "*.md" \
+	! -path "*plugged/*"
 
 # `Main Paths`
 # ============
 HOME_DIST	:= ${HOME}
 DOTS_PATH	:= ${PWD}/dots
 SECRETS_PATH	:= $(HOME_DIST)/projects/secrets/dots
+NVIM_PATH	:= $(HOME_DIST)/projects/nvim
 
 # `secrets`
 # =========
-SECRETS_IGNORE	:= ! -wholename "*.git/*" ! -name "Session.vim"
-SECRETS_SRC	:= $(shell find $(SECRETS_PATH) -type f $(SECRETS_IGNORE) 2> /dev/null)
+SECRETS_SRC	:= $(shell find $(SECRETS_PATH) -type f $(SYM_IGNORE) 2> /dev/null)
 SECRETS_OUT	:= $(patsubst $(SECRETS_PATH)/%,$(HOME_DIST)/%,$(SECRETS_SRC))
+
+# `nvim`
+# ======
+HOME_DIST_NVIM	:= $(HOME_DIST)/.config/nvim
+NVIM_SRC	:= $(shell find $(NVIM_PATH) -type f $(SYM_IGNORE) 2> /dev/null)
+NVIM_OUT	:= $(patsubst $(NVIM_PATH)/%,$(HOME_DIST_NVIM)/%,$(NVIM_SRC))
 
 # `SHs`
 # =====
@@ -37,13 +48,8 @@ SH_FILES	:= $(shell ${PWD}/src/utils/find-sh-files.sh)
 
 # `dots`
 # ======
-DOTS_SRC	:= $(shell find $(DOTS_PATH) -type f $(DOTS_IGNORE))
+DOTS_SRC	:= $(shell find $(DOTS_PATH) -type f $(SYM_IGNORE))
 DOTS_OUT	:= $(patsubst $(DOTS_PATH)/%,$(HOME_DIST)/%,$(DOTS_SRC))
-DOTS_IGNORE	:= \
-	! -name "*.md" \
-	! -path "*plugged/*" \
-	! -name "Session.vim" \
-	! -path "*.git*"
 
 # `clean`
 # =======
@@ -73,7 +79,7 @@ endef
 ######
 
 .PHONY: link
-link: link-dots link-secrets
+link: link-dots link-secrets link-nvim
 
 .PHONY: clean
 clean: $(CLEAN_SRC) post-clean
@@ -145,5 +151,10 @@ $(HOME_DIST)/%: $(DOTS_PATH)/%
 .PHONY: link-secrets
 link-secrets: make-dots-config-dir $(SECRETS_OUT)
 $(HOME_DIST)/%: $(SECRETS_PATH)/%
+	$(call do_symlink,$@,$<)
+
+.PHONY: link-nvim
+link-nvim: make-dots-config-dir $(NVIM_OUT)
+$(HOME_DIST_NVIM)/%: $(NVIM_PATH)/%
 	$(call do_symlink,$@,$<)
 
